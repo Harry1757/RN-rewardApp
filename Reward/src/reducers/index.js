@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import {inputReducer} from './input';
-import {uerDataSaveReducer} from './login';
+import {saveUserDataReducer} from './setUser';
+import {saveMarektDataReducer} from './setMarket';
 const rootReducer = combineReducers({
-  inputReducer,
-  uerDataSaveReducer,
+  saveUserDataReducer,
+  saveMarektDataReducer,
 });
 
 export default rootReducer;

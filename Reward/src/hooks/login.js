@@ -1,16 +1,15 @@
 import {useDispatch, useSelector} from 'react-redux';
 import React, {useCallback} from 'react';
-import {loginAction} from '@actions/login';
+import {loginAction} from '@actions/user/login';
 
-export const useSaveUserData = () => {
+export const useLogin = () => {
   const dispatch = useDispatch();
-  const userInfo = useSelector(state => state.uerDataSaveReducer);
-  const saveUserInfo = useCallback(
+  const login = useCallback(
     user => {
       dispatch(loginAction(user));
     },
     [dispatch],
   );
 
-  return {saveUserInfo, userInfo};
+  return {login};
 };

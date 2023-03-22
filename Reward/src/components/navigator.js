@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useSaveUserData} from '@hooks/login';
+import {useSetUser} from '@hooks/setUser';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Login} from './login';
 import {Home} from './home';
@@ -7,7 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 export const Navigator = () => {
-  const {userInfo} = useSaveUserData();
+  const {userInfo} = useSetUser();
 
   return (
     <NavigationContainer>

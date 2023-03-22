@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Stack, TextInput, Button} from '@react-native-material/core';
-import {useSaveUserData} from '@hooks/login';
+import {useLogin} from '@hooks/login';
 import {Alert} from 'react-native';
 
 export const Login = () => {
   const [user, setUser] = useState({name: '', email: ''});
-  const {saveUserInfo} = useSaveUserData();
+  const {login} = useLogin();
 
   const handleInputName = text => {
     setUser(userName => Object.assign({}, userName, {name: text}));
@@ -24,7 +24,7 @@ export const Login = () => {
         },
       ]);
     } else {
-      saveUserInfo(user);
+      login(user);
     }
   };
 

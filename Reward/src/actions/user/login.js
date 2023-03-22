@@ -1,4 +1,4 @@
-import {LOGIN} from './actionTypes';
+import {LOGIN} from '../actionTypes';
 
 export const loginAction = userData => ({
   type: LOGIN,

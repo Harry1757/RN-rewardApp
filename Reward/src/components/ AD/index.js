@@ -7,7 +7,7 @@ import {
   Avatar,
   ListItem,
 } from '@react-native-material/core';
-import {useSaveUserData} from '@hooks/login';
+import {useSetUser} from '@hooks/setUser';
 
 const ADList = [
   {title: '광고 1', point: 10},
@@ -15,7 +15,7 @@ const ADList = [
   {title: '광고 3', point: 40},
 ];
 export const ADPage = () => {
-  const {saveUserInfo, userInfo} = useSaveUserData();
+  const {setUserData, userInfo} = useSetUser();
   const [Loading, setLoading] = useState('');
 
   const handleGetPoint = (title, point) => {
@@ -23,13 +23,13 @@ export const ADPage = () => {
     if (newUserInfo.point) {
       newUserInfo.point = (Number(newUserInfo.point) + point).toString();
     } else {
-      newUserInfo.point = point;
+      newUserInfo.point = point.toString();
     }
     setLoading(title);
     setTimeout(() => {
       setLoading('');
     }, point * 100);
-    saveUserInfo(newUserInfo);
+    setUserData(newUserInfo);
   };
 
   return (
