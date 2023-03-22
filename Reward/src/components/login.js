@@ -9,10 +9,10 @@ export const Login = () => {
   const {login} = useLogin();
 
   const handleInputName = text => {
-    setUser(userName => Object.assign({}, userName, {name: text}));
+    setUser({...user, name: text});
   };
-  const handleInputEmail = email => {
-    setUser(userEmail => Object.assign({}, userEmail, {email: email}));
+  const handleInputEmail = text => {
+    setUser({...user, email: text});
   };
 
   const handleSaveUserData = () => {

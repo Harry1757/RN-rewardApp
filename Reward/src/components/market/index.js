@@ -10,38 +10,40 @@ export const Market = () => {
   const {userInfo, setUserData} = useSetUser();
   const handleBuyButton = value => {
     const {title, point} = value;
-    if (Number(point) > Number(userInfo.user.point)) {
+    const UserPoint = Number(userInfo.user.point)
+      ? Number(userInfo.user.point)
+      : 0;
+
+    if (Number(point) > UserPoint) {
       Alert.alert('Warning', 'point 부족함', [
         {
           text: 'Cancel',
           style: 'cancel',
         },
       ]);
-    } else {
-      const removeBuyProduct = marketInfo.productList.filter(
-        product => product.title !== title,
-      );
-
-      const buyProductItem = marketInfo.productList.filter(
-        product => product.title === title,
-      );
-
-      const saveBuyProductInUserInfo = userInfo.user.purchaseList
-        ? userInfo.user.purchaseList.concat(buyProductItem)
-        : buyProductItem;
-
-      const saveUserInfoWithNewProduct = Object.assign(
-        {},
-        userInfo.user,
-        {
-          purchaseList: saveBuyProductInUserInfo,
-        },
-        {point: (Number(userInfo.user.point) - Number(point)).toString()},
-      );
-
-      setUserData(saveUserInfoWithNewProduct);
-      buyProduct(removeBuyProduct);
+      return;
     }
+
+    const removedBuyProduct = marketInfo.productList.filter(
+      product => product.title !== title,
+    );
+
+    const boughtProductItem = marketInfo.productList.filter(
+      product => product.title === title,
+    );
+
+    const saveBuyProductInUserInfo = userInfo.user.purchaseList
+      ? userInfo.user.purchaseList.concat(boughtProductItem)
+      : boughtProductItem;
+
+    const savedUserInfoWithNewProduct = {
+      ...userInfo.user,
+      purchaseList: saveBuyProductInUserInfo,
+      point: (UserPoint - Number(point)).toString(),
+    };
+
+    setUserData(savedUserInfoWithNewProduct);
+    buyProduct(removedBuyProduct);
   };
 
   return (
