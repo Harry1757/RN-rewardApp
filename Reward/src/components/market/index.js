@@ -43,7 +43,6 @@ export const Market = () => {
       buyProduct(removeBuyProduct);
     }
   };
-
   return (
     <ScrollView>
       <HStack center spacing={4} wrap={'wrap'} gap={10}>
